@@ -1,13 +1,15 @@
-function brandConsistencyAppReport(){
-	console.log('Report page loaded.');
+console.log('Report page loaded.');
 
 	// Check local storage for last project name, replace project name if one exists
 	var projectName = localStorage.getItem("brandConsistencyTestProjectName");
 	// Set up variables for mission, values, etc
-	var brandMission = "Our mission is to bring clean and safe drinking water to every person in the world";
+	var brandMission = "My mission is to help brand owners get deep and profound clarity for their brands and projects in a way that helps their target audience achieve their version of success.";
 	// Check to see if the fullScore of the last project was stored.
 	var fullScoreVar = localStorage.getItem("brandConsistencyTestFullScore");
+	// Check for stored slider values and arranged them into an array of variables
+	var questionReportScore = [];
 
+function brandConsistencyAppReport(){
 	if (projectName === '') {
 		$(".projectName").text("undefined");
 	} else if (projectName !== null) {
@@ -36,10 +38,6 @@ function brandConsistencyAppReport(){
 		  $("#finalScore").addClass('highScore');
 		  $("#finalScore").removeClass('lowscore midScore goodScore');
 	}
-
-	// Check for stored slider values and arranged them into an array of variables
-	var questionReportScore = [];
-
 	for (i = 1; i <= 10; i++) {
 		var sliderValue = localStorage.getItem ("brandConsistencyTestSliderValue" + i);
 		if(sliderValue === null) {
@@ -48,7 +46,6 @@ function brandConsistencyAppReport(){
 		$("#sliderValue" + i).text(sliderValue);
 		questionReportScore[i] = sliderValue;
 	}
-
 
 	// Build out the test results
 	function processTestResults(){
@@ -174,6 +171,7 @@ function brandConsistencyAppReport(){
 		}
 
 		// Spit out the Results
+		
 		$("#questionReport1").text(questionReport1);
 		$("#questionReport2").text(questionReport2);
 		$("#questionReport3").text(questionReport3);

@@ -2,7 +2,7 @@ function brandConsistencyApp(){
 	console.log('App loaded.');
 	
 	// Set version
-	var appVersion = 1.282;
+	var appVersion = 1.29;
 	console.log("Version " + appVersion);
 	$('#appVersion').text('v. ' + appVersion);
 }

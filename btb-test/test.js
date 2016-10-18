@@ -1,36 +1,53 @@
-function brandConsistencyAppTest(){
-	console.log('Test page loaded.');
-	
-	// Check local storage for last project name, replace project name if one exists
+console.log('Test page loaded.');
+
+// Check local storage for last project name, replace project name if one exists
 	var projectName = localStorage.getItem("brandConsistencyTestProjectName");
 	// Initializes fullScore at 0.
 	var fullScore = 0;
 	// Check to see if the fullScore of the last project was stored.
-	var fullScoreVar = localStorage.getItem("brandConsistencyTestFullScore");
 	
-	// Reset Project Values
-	function resetValues() {
-		// Set slider values and scores to 0
-		for (var i = 1; i <= 10; i++) {
-			$("#q" + i + "Score").text('0');
-			localStorage.removeItem("brandConsistencyTestSliderValue" + i);
-	    }
-	    // Change the project name throughout the page
-	    setProjectName("it");
-		$("#mainProjectName").text('');
-		localStorage.removeItem("brandConsistencyTestProjectName");
-		// Zero out the full score
-		$("#fullScore").text('0');
-		localStorage.removeItem("brandConsistencyTestFullScore");
-		// Change the main score message at the bottom
-		$("#mainMessage").text('Move any slider to get started!');
-		$("#finalScore").addClass('lowScore');
-		$("#finalScore").removeClass('midScore goodScore highScore');
-		// Reset the score indicator at the bottom
-		$("#scoreIndicator").css('left', "0%");
-		$("#scoreIndicatorShadow").css('left', "0%");
-	}
+	var fullScoreVar = localStorage.getItem("brandConsistencyTestFullScore")
 
+// A function to manage the projectNameClass array
+function setProjectName(nameValue) {
+	if (projectName === '') {
+		$(".projectName").text("undefined");
+		return;
+	} else if (projectName !== null) {
+		$(".projectName").text(nameValue);
+		projectName = nameValue;
+		return;
+	} else {
+		return;
+	}
+}
+
+
+// Reset Project Values
+function resetValues() {
+	// Set slider values and scores to 0
+	for (var i = 1; i <= 10; i++) {
+		$("#q" + i + "Score").text('0');
+		localStorage.removeItem("brandConsistencyTestSliderValue" + i);
+    }
+    // Change the project name throughout the page
+    setProjectName("it");
+	$("#mainProjectName").text('');
+	localStorage.removeItem("brandConsistencyTestProjectName");
+	// Zero out the full score
+	$("#fullScore").text('0');
+	localStorage.removeItem("brandConsistencyTestFullScore");
+	// Change the main score message at the bottom
+	$("#mainMessage").text('Move any slider to get started!');
+	$("#finalScore").addClass('lowScore');
+	$("#finalScore").removeClass('midScore goodScore highScore');
+	// Reset the score indicator at the bottom
+	$("#scoreIndicator").css('left', "0%");
+	$("#scoreIndicatorShadow").css('left', "0%");
+}
+
+function brandConsistencyAppTest(){
+	
 	// Set initial slider values to 0
 	for (var i = 1; i <= 10; i++) {
 		$("#slider" + i).val(0);
@@ -60,20 +77,6 @@ function brandConsistencyAppTest(){
 		  fullScore = parseInt(fullScore) + parseInt($(this).val());
 		});
 		return fullScore;
-	}
-
-	// A function to manage the projectNameClass array
-	function setProjectName(nameValue) {
-		if (projectName === '') {
-			$(".projectName").text("undefined");
-			return;
-		} else if (projectName !== null) {
-			$(".projectName").text(nameValue);
-			projectName = nameValue;
-			return;
-		} else {
-			return;
-		}
 	}
 
 	// If storage has a project name, insert it into all the places

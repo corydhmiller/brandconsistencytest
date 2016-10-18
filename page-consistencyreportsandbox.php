@@ -1,19 +1,38 @@
 <?php
-get_header('required');
+	
+// If the file is being accessed directly
+if (strpos($_SERVER['REQUEST_URI'], '.php') !== false) {
+	exit('Direct access to this file is not permitted.');
+}
 
-global $thereShallBeNoFooter;
-$thereShallBeNoFooter = true;
+// Force HTTPS.
+if(empty($_SERVER["HTTPS"]) || $_SERVER["HTTPS"] != "on") {
+    header("Location: https://" . $_SERVER["HTTP_HOST"] . $_SERVER["REQUEST_URI"]);
+    exit();
+}
+
 ?>
-<link rel="stylesheet" type="text/css" media="all" href="http://seanwes.com/wp-content/themes/seanwes/btb-test/style.css">
-<script type="text/javascript" src="http://seanwes.com/wp-content/themes/seanwes/btb-test/app.js"></script>
-<script type="text/javascript" src="http://seanwes.com/wp-content/themes/seanwes/btb-test/report.js"></script>
+
+<!DOCTYPE html>
+<html>
+	<head>
+		<title>The Brand Consistency Test: Report</title>
+
+<link rel="stylesheet" type="text/css" media="all" href="//seanwes.com/wp-content/themes/seanwes/style.css">
+<link rel="stylesheet" type="text/css" media="all" href="//seanwes.com/wp-content/themes/seanwes/btb-test/style.css">
+<script type="text/javascript" src="//seanwes.com/wp-content/themes/seanwes/btb-test/app.js"></script>
+<script type="text/javascript" src="//seanwes.com/wp-content/themes/seanwes/btb-test/report.js"></script>
+<script type="text/javascript" src="https://code.jquery.com/jquery-3.1.1.min.js"></script>
+
 <script>
 $(document).ready(function() {
 	brandConsistencyApp();
 	brandConsistencyAppReport();
 });
 </script>
+</head>
 
+<body>
 <div class="pageDarkHeader ">
     <div class="row">
         <div class="ten">               
@@ -88,5 +107,8 @@ $(document).ready(function() {
     </div>
 </div>
 
+<script type="text/javascript" src="//use.typekit.net/wfe4jfn.js"></script><script type="text/javascript">try{Typekit.load();}catch(e){}</script>
 
-    <?php get_footer(); ?>
+
+</body>
+</html>
